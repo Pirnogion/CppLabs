@@ -3,7 +3,7 @@
 using namespace std;
 
 // Объявление функций:
-void obmen1(int, int); 
+void obmen1(int, int); // Прототипы функций 
 void obmen2(int*, int*);
 void obmen3(int&, int&);
 
@@ -22,19 +22,19 @@ void main()
     cout << "После обмена 3: a=" << a << ", b=" << b << endl;
 }
 
-void obmen1(int a, int b)
+void obmen1(int a, int b) // Определение функции
 {
-   
+   // Обмен не совершить совершить, так как используется передача по значению
 }
 
-void obmen2(int* a, int* b)
+void obmen2(int* a, int* b) // Передача по указателю
 {
     int t = *a;
     *a = *b;   
     *b = t;    
 }
 
-void obmen3(int& a, int& b)
+void obmen3(int& a, int& b) // Передача по ссылке
 {
     int t = a;
     a = b;    

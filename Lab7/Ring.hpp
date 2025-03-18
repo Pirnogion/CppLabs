@@ -14,7 +14,7 @@ namespace SfmlLab1
 	public:
 		Ring(unsigned aRadius, float aAngle, unsigned aWidth, sf::Vector2f aPosition, sf::Color aColor) : Circle(aRadius, aAngle, aPosition, aColor), width(aWidth) {}
 
-		void render(sf::RenderWindow& window) override
+		void render(sf::RenderWindow& window) override // Переопределение поведения вирутальной функции
 		{
 			ArcShape outer(radius);
 			outer.setFillColor(color);

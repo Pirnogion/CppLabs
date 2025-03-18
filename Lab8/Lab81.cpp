@@ -2,23 +2,23 @@
 
 using namespace std;
 
-class Stroka {
+class Stroka { // Сущность сторки
 	char* str;
 
 public:
 	Stroka()
 	{
-		str = new char[50];
+		str = new char[50]; // Выделение массива динамической памяти
 	}
 
 	~Stroka()
 	{
-		delete[] str;
+		delete[] str; // Очистка памяти
 	}
 
 	Stroka(const char* s) : Stroka()
 	{
-		memcpy(str, s, strlen(s) + 1);
+		memcpy(str, s, strlen(s) + 1); // Копирование участка памяти
 	}
 
 	Stroka(const Stroka& s) : Stroka()
@@ -45,16 +45,16 @@ public:
 	int operator==(const Stroka& s) const
 	{
 		const unsigned char* p1 = reinterpret_cast<const unsigned char*>(str);
-		const unsigned char* p2 = reinterpret_cast<const unsigned char*>(s.str);
+		const unsigned char* p2 = reinterpret_cast<const unsigned char*>(s.str); // Интерпретируем char* как const unsigned char*
 
-		while (*p1 && *p1 == *p2) ++p1, ++p2;
+		while (*p1 && *p1 == *p2) ++p1, ++p2; // Сравнивание двух строк посимвольно (побайтово)
 
 		return (*p1 > *p2) - (*p2 > *p1);
 	}
 
 	friend istream& operator>>(istream& is, Stroka& s)
 	{
-		is.getline(s.str, 50);
+		is.getline(s.str, 50); // Поулчение из ввода ровно 50 символов
 		return is;
 	}
 
@@ -67,7 +67,7 @@ public:
 	int dlina()
 	{
 		const char* end = str;
-		while (*end != '\0') ++end;
+		while (*end != '\0') ++end; // Вычисление длины строки полагась на терминирующий символ
 
 		return end - str;
 	}

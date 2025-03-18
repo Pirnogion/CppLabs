@@ -11,10 +11,11 @@
 
 #define N 5
 
-using namespace std;
+using namespace std; // Подулючение к области видимости стандартной библиотеки
 
-using t_matrix = const float (&)[N][N];
+using t_matrix = const float (&)[N][N]; // Определение типа ссылки на неизменяемую матрицу дробных чисел размера NxN
 
+// Много всяких разных функций для работы с матрицей
 float getMax(t_matrix);
 float getMin(t_matrix);
 float getUpperTriangleMax(t_matrix);
@@ -32,6 +33,7 @@ float getUpperTriangleSum(t_matrix);
 float getLowerTriangleSum(t_matrix);
 float getNearestToAverage(t_matrix);
 
+// Используется контейнер из стандартной библиотеки С++
 vector<float> getRowsSum(t_matrix);
 vector<float> getColsSum(t_matrix);
 vector<float> getRowsMin(t_matrix);
@@ -45,8 +47,6 @@ string printVector(vector<float>);
 
 void main()
 {
-	assert(N > 0);
-
 	float m[N][N];
 
 	for (int i = 0; i < N; ++i)

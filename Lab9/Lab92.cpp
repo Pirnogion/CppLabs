@@ -4,13 +4,13 @@
 using namespace std;
 
 template<class T>
-T getmax(T t1, T t2)
+T getmax(T t1, T t2) // Обобщенная функция максимума, принимает один любой тип
 {
 	return (t1 > t2) ? t1 : t2;
 }
 
 template<class T>
-T getmax(T t[], size_t size)
+T getmax(T t[], size_t size) // Перегрузка обобщенной функции
 {
 	T retval = t[0];
 	for (int i = 0; i < size; ++i)

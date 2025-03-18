@@ -3,7 +3,7 @@
 using namespace std;
 
 template<class T>
-class Stack
+class Stack // Сущность обобщенного стека
 {
 protected:
 	int count;
@@ -52,7 +52,7 @@ public:
 };
 
 template<class T>
-void tsort(T src[], T dst[], size_t length)
+void tsort(T src[], T dst[], size_t length) // Сортировка стеком
 {
 	Stack<T> deadend;
 	size_t vacancy = 0;
@@ -81,7 +81,7 @@ int main()
 	const size_t length = sizeof(ints) / sizeof(int);
 
 	int dst[length];
-	tsort(ints, dst, length); // Сортирует не любой массив
+	tsort(ints, dst, length); // Сортирует не любой массив, есть теоретические ограничения на такакого рода сортировку
 
 	for (int i = 0; i < length; ++i) cout << dst[i] << " ";
 

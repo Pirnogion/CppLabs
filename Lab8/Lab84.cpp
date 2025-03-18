@@ -7,7 +7,7 @@ int main()
 {
 	const char fname[] = "files/Lab84.txt";
 	
-	ofstream ofs(fname, ios::out | ios::_Noreplace);
+	ofstream ofs(fname, ios::out | ios::_Noreplace); // Открываем файл на запись и если он уже существует, то будет ошибка
 	if (!ofs)
 	{
 		cout << "The file already exsists!";
@@ -18,7 +18,7 @@ int main()
 	ofs.close();
 
 	fstream fs;
-	fs.open(fname, ios::out | ios::ate);
+	fs.open(fname, ios::out | ios::ate); // Откртие файла на дозапись данных
 	if (!fs)
 	{
 		cout << "Could not open the file!";

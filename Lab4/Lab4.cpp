@@ -16,7 +16,7 @@ void main()
 	cout << "[ STDLIB ]" << endl << endl;
 
 	const char str1[] = "Oleg", str2[] = "Ivanovich";
-	char dest1[14]{ '\0' }, cpy1[5]{ '\0' };
+	char dest1[14]{ '\0' }, cpy1[5]{ '\0' }; // Инициализация пустых строк нулями
 	char dest2[14]{ '\0' }, cpy2[5]{ '\0' };
 
 	cout << "strlen(\"" << str1 << "\") => " << strlen(str1) << endl;
@@ -54,15 +54,15 @@ void main()
 
 	cout << endl << "[ CUSTOM (malloc) ]" << endl << endl;
 
-	char* rhstr1 = static_cast<char*>(malloc(sizeof(char) * 5)); char* rhstr2 = static_cast<char*>(malloc(sizeof(char) * 10));
-	char* rhdest1 = static_cast<char*>(malloc(sizeof(char) * 14)); char* rhcpy1 = static_cast<char*>(malloc(sizeof(char) * 5));
-	if (rhstr1 == nullptr || rhstr2 == nullptr || rhdest1 == nullptr || rhcpy1 == nullptr)
+	char* rhstr1 = static_cast<char*>(malloc(sizeof(char) * 5)); char* rhstr2 = static_cast<char*>(malloc(sizeof(char) * 10)); // Выделение памяти
+	char* rhdest1 = static_cast<char*>(malloc(sizeof(char) * 14)); char* rhcpy1 = static_cast<char*>(malloc(sizeof(char) * 5)); // static_cast - преобразование типов с сохранением значения, если это возможно, это нужно так как malloc возвращает void*
+	if (rhstr1 == nullptr || rhstr2 == nullptr || rhdest1 == nullptr || rhcpy1 == nullptr) // Проверяем что память выделена
 	{
 		cerr << "Could not allocate memory!" << endl;
 		abort();
 	}
 
-	memcpy(rhstr1, "Ivan", sizeof(char) * 5); memcpy(rhstr2, "Ivanovich", sizeof(char) * 10);
+	memcpy(rhstr1, "Ivan", sizeof(char) * 5); memcpy(rhstr2, "Ivanovich", sizeof(char) * 10); // sizeof размер типа в байтах
 	memset(rhdest1, '\0', sizeof(char) * 14); memset(rhcpy1, '\0', sizeof(char) * 5);
 
 	cout << "length1(\"" << rhstr1 << "\") => " << length1(rhstr1) << endl;
@@ -81,13 +81,14 @@ void main()
 	cout << "compare(\"" << rhstr1 << "\", \"" << rhstr2 << "\") => " << compare(rhstr1, rhstr2) << endl;
 	cout << "compare(\"" << rhstr2 << "\", \"" << rhstr1 << "\") => " << compare(rhstr2, rhstr1) << endl;
 
-	free(rhstr1);
+	free(rhstr1); // Освобождение памяти
 	free(rhstr2);
 	free(rhdest1);
 	free(rhcpy1);
 
 	cout << endl << "[ CUSTOM (calloc) ]" << endl << endl;
 
+	// calloc также выделяет динамическую память, но инициализирует ее нулями
 	char* crhstr1 = static_cast<char*>(calloc(5, sizeof(char))); char* crhstr2 = static_cast<char*>(calloc(10, sizeof(char)));
 	char* crhdest1 = static_cast<char*>(calloc(14, sizeof(char))); char* crhcpy1 = static_cast<char*>(calloc(5, sizeof(char)));
 	if (crhstr1 == nullptr || crhstr2 == nullptr || crhdest1 == nullptr || crhcpy1 == nullptr)
@@ -123,6 +124,8 @@ void main()
 
 	const char* astr1[] { "Ivan", "Natasha", "Anton" };
 	const char* astr2[] { "Petrovich", "Semyonovna", "Ivanovich" };
+
+	// С++ оператор для выделения памяти (работает с ООП), с возможностью инициализации заданным значением, тоже может возвратить ошибку\исключение, но здесь она не проверяется
 	char* adest1[] = { new char[14] {'\0'}, new char[18] {'\0'}, new char[15] {'\0'} };
 	char* acpy1[] = { new char[5] {'\0'}, new char[8] {'\0'}, new char[6] {'\0'} };
 
@@ -149,7 +152,7 @@ void main()
 
 	for (int i = 0; i < 3; ++i)
 	{
-		delete[] adest1[i];
+		delete[] adest1[i]; // Удаляет массив выделенной памяти
 		delete[] acpy1[i];
 	}
 }

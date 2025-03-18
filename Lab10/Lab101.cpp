@@ -4,12 +4,12 @@
 using namespace std;
 
 template<class T>
-class List
+class List // Обощенный список
 {
 protected:
-	struct Node
+	struct Node // Скрытая структура узла - сущность необходимая для реализации списка
 	{
-		const T& value;
+		const T& value; // Работаем по ссылке на неизменяемые данные, т.к. список не должен что-либо знать об хранимом значении
 		Node* next = nullptr;
 	};
 
@@ -19,7 +19,7 @@ protected:
 	Node* last = nullptr;
 
 public:
-	~List()
+	~List() // Уничтожаем ненужные ноды на куче
 	{
 		Node* current = first;
 		while (current)
@@ -37,7 +37,7 @@ public:
 
 	void append(const T& value)
 	{
-		Node* node = new Node{ value };
+		Node* node = new Node{ value }; // Агрегатная инициализация, выделение динамической паямти под объект
 
 		if (size == 0) last = first = node;
 		else last = last->next = node;
@@ -75,10 +75,10 @@ public:
 
 		--size;
 
-		delete current;
+		delete current; // Очищаем ненужную ноду из памяти
 	}
 
-	const T* find(const T& value) const
+	T* find(const T& value) const // Константный метод, т.к. он ничего не изменяет
 	{
 		Node* current = first;
 		while (current && current->value != value)
@@ -86,7 +86,7 @@ public:
 			current = current->next;
 		}
 
-		return (current) ? &current->value : nullptr;
+		return (current) ? &current->value : nullptr; // Возврат указателя, так как требуется выдать результат, но пустой ссылки быть не может
 	}
 
 	friend ostream& operator<<(ostream& os, const List& list)
@@ -106,7 +106,7 @@ public:
 	}
 };
 
-struct Bus
+struct Bus // Сущность для хранения данных об автобусе
 {
 	string id;
 	string driver;
@@ -118,13 +118,15 @@ struct Bus
 		return os;
 	}
 
+	// Перегрузка оператора != для того, чтобы можно было отличить один объект от других
+	// не зная ничего о конкретном типе до компиляции
 	int operator !=(const Bus& bus) const
 	{
 		return id != bus.id;
 	}
 };
 
-class Dispatcher
+class Dispatcher // Сущность для упарвления системой "автобусного парка"
 {
 protected:
 	List<Bus> inner, outer;
@@ -168,7 +170,7 @@ public:
 
 int main()
 {
-	Bus buses[] {
+	Bus buses[] { // Храним данные автобусов на стеке
 		{ "AZ492I", "Vesnuxin O. G.",  "AMZU-956" },
 		{ "AT211O", "Trubnoi A. S.",   "AMZU-312" },
 		{ "JS498I", "Vesnuxin I. I.",  "BKJQ-103" },
@@ -181,6 +183,7 @@ int main()
 
 	Dispatcher dispatcher(buses, sizeof(buses) / sizeof(Bus));
 
+	// Простой обработчик команд с ввода
 	string command;
 
 	cout << "Enter any command: " << endl;

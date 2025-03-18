@@ -13,7 +13,7 @@ int main()
 	char* buffer = new char[BUFFER_SIZE];
 
 	FILE* in;
-	if (fopen_s(&in, input, "r") != 0)
+	if (fopen_s(&in, input, "r") != 0) // Открытие файла на чтение
 	{
 		printf("Could not open required files.");
 
@@ -22,7 +22,7 @@ int main()
 	}
 
 	FILE* out;
-	if (fopen_s(&out, output, "w") != 0)
+	if (fopen_s(&out, output, "w") != 0) // Открыти файла на запись
 	{
 		printf("Could not open required files.");
 
@@ -34,6 +34,7 @@ int main()
 	bool isPageNumber = true;
 	unsigned offset = 0;
 
+	// Вырезаем номер страницы из начала и вставляем в конец очищая от лишних символов
 	while (!feof(in))
 	{
 		char ch = getc(in);

@@ -6,7 +6,7 @@ using namespace std;
 
 unsigned encode(const char*, const char*, const char*, const int);
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]) // ИСпользуем аргументы программы (argc - кол-во аргументов, argv - массив аргументов)
 {
 	if (argc < 3)
 	{
@@ -14,10 +14,10 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	const char* key = argv[1];
+	const char* key = argv[1]; // Секретный ключ взятый из аргументов
 	const int length = strlen(key);
 
-	const char* input = argv[2];
+	const char* input = argv[2]; // Название файла, который нужно шифровать
 
 	printf("Key is \"%s\".\n", key);
 	printf("File is \"%s\".\n", input);
@@ -62,10 +62,10 @@ unsigned encode(const char* input, const char* output, const char* key, const in
 
 	unsigned offset = 0;
 	int ch;
-	while ((ch = getc(in)) != EOF)
+	while ((ch = getc(in)) != EOF) // Конструкция для чтения файла и чтобы не читать лишний байт в конце файла
 	{
 		char pt = key[offset++ % length];
-		putc(ch^pt, out);
+		putc(ch^pt, out); // Кладем зашифрованный символ в выходной файл
 	}
 
 	fclose(in);

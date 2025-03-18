@@ -2,7 +2,7 @@
 
 #include "Random.hpp"
 
-namespace SfmlLab1
+namespace SfmlLab1 // Простарнство имен для данной программы
 {
 	class Point
 	{
@@ -11,9 +11,9 @@ namespace SfmlLab1
 		sf::Color color;
 
 	public:
-		Point(sf::Vector2f aPosition, sf::Color aColor) : position(aPosition), color(aColor) {}
+		Point(sf::Vector2f aPosition, sf::Color aColor) : position(aPosition), color(aColor) {} // Список инициализаторов
 
-		virtual void render(sf::RenderWindow& window) {}
+		virtual void render(sf::RenderWindow& window) {} // Вирутальная функция для использования динамического полиморфизма
 
 		virtual void animate(sf::RenderWindow& window, int cost)
 		{

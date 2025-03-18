@@ -3,10 +3,10 @@
 
 using namespace std;
 
-class Stroka {
+class Stroka { // Класс строки, подробные комментарии в Lab81
 	char* str;
 
-	public:
+	public: // Прототипы конструкторов и методов
 		Stroka(const char*);
 		Stroka();
 		~Stroka();
@@ -19,6 +19,7 @@ class Stroka {
 		void vyvod();
 };
 
+// Реализация конструкторов и методов
 Stroka::Stroka()
 {
 	str = new char[50];

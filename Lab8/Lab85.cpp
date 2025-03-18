@@ -7,7 +7,7 @@ unsigned encode(const char*, const char*, const char*, const int);
 
 int main()
 {
-	const char* key = "kashalot";
+	const char* key = "kashalot"; // СЕКРЕТНЫЙ ключ
 	const int length = strlen(key);
 
 	const char* input = "files/Lab85i.txt";
@@ -57,8 +57,8 @@ unsigned encode(const char* input, const char* output, const char* key, const in
 	char ch;
 	while (in.get(ch))
 	{
-		char pt = key[offset++ % length];
-		out << static_cast<char>(ch ^ pt);
+		char pt = key[offset++ % length]; // Кодируем символы
+		out << static_cast<char>(ch ^ pt); // ch ^ pt - будет типа int и на вывод попадет мусор, поэтому изменяем тип с сохранением значения
 	}
 
 	in.close();

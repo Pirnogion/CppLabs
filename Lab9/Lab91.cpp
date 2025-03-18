@@ -16,7 +16,7 @@ public:
 		cents = c;
 	}
 
-	int operator<(const Money& amt) const
+	int operator<(const Money& amt) const // ѕерегрузка оператора сравнени€ дл€ сортировки
 	{
 		return (dollars < amt.dollars) || ((dollars == amt.dollars) && (cents < amt.cents));
 	}
@@ -37,7 +37,7 @@ int main()
 		Money(19, 95),
 	};
 
-	sort(begin(mas), end(mas));
+	sort(begin(mas), end(mas)); // —тандратна€ сортировка, используютс€ итераторы
 	for (int i = 0; i < sizeof(mas) / sizeof(mas[0]); ++i)
 	{
 		cout << "mas[" << i << "] = " << mas[i] << endl;

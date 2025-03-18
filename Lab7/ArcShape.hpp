@@ -4,7 +4,7 @@
 
 namespace SfmlLab1
 {
-	class ArcShape : public sf::ConvexShape
+	class ArcShape : public sf::ConvexShape // Расширение поведения SFML-класса форм
 	{
 	protected:
 		float radius;

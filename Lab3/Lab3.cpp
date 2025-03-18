@@ -2,6 +2,7 @@
 
 using namespace std;
 
+// Реадизации различных сортировок
 void minsort(int*, const int);
 void maxsort(int*, const int);
 void bubblesort(int*, const int);
@@ -165,7 +166,7 @@ bool isEven(const int& value)
 
 bool isOdd(const int& value)
 {
-	return value & 1;
+	return value & 1; // Аналогично x % 2 === 1
 }
 
 void printArray(const int* array, const int length)

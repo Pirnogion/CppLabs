@@ -11,7 +11,7 @@ int main()
 
 	cout << "Enter an input filename: ";
 	cin >> fname;
-	ifstream ifs(fname);
+	ifstream ifs(fname); // Открытие файлового потока на ввод
 	if (!ifs)
 	{
 		cout << "Could not open the file: " << fname << ".";
@@ -20,7 +20,7 @@ int main()
 
 	cout << "Enter an output filename: ";
 	cin >> fname;
-	ofstream ofs(fname);
+	ofstream ofs(fname); // Открытик файлового потока на вывод
 	if (!ofs)
 	{
 		cout << "Could not open the file: " << fname << ".";
@@ -29,7 +29,7 @@ int main()
 
 	cout << "Copying... ";
 
-	while (ifs && ofs)
+	while (ifs && ofs) // Посимвольное копирование из одного потока в другой с изменением регистра символа
 	{
 		ifs.get(c);
 		c = toupper(c);
@@ -38,7 +38,7 @@ int main()
 
 	cout << "Done!" << endl;
 
-	ifs.close();
+	ifs.close(); // Закрытие потоков
 	ofs.close();
 
 	return 0;

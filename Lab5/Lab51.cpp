@@ -2,7 +2,7 @@
 #include <cctype>
 
 #define FILENAME_SIZE 50
-#define BUFFER_SIZE 1048576
+#define BUFFER_SIZE 1048576 // Определение встариваемой константы при помощи препроцессора
 
 using namespace std;
 
@@ -12,7 +12,7 @@ unsigned read(const char*, char*, const unsigned);
 int main()
 {
 	char filename[FILENAME_SIZE];
-	char* content = new char[BUFFER_SIZE];
+	char* content = new char[BUFFER_SIZE]; // Содержание считанного файла
 
 	printf("Enter a filename: ");
 	scanf_s("%s", filename, sizeof(filename));
@@ -57,6 +57,7 @@ int find(const char* needle, int nlength, const char* haystack, int hlength)
 		return -1;
 	}
 
+	// Посик позиции первого вхождения подстроки в строке
 	for (int i = 0, origin = 0, length = 0; i < hlength; ++i)
 	{
 		if (haystack[i] == needle[length])
@@ -80,19 +81,21 @@ unsigned read(const char* filename, char* buffer, const unsigned length)
 		return 0;
 	}
 
+	// Чтение файла
 	FILE* in;
 	if (fopen_s(&in, filename, "r") != 0)
 	{
 		return 0;
 	}
 
+	// В заранее выделенный буфер в динамической памяти
 	unsigned int offset = 0;
 	while (!feof(in) && offset != length)
 	{
 		buffer[offset++] = getc(in);
 	}
 
-	fclose(in);
+	fclose(in); // Закрыти файла
 
 	return offset;
 }

@@ -1,6 +1,6 @@
 #include <cstdio>
 
-#define PR(x) printf("x=%u, *x=%d, &x=%u\n", x, *x, &x)
+#define PR(x) printf("x=%u, *x=%d, &x=%u\n", x, *x, &x) // Макрос препроцессора, подставляет параметр и встраивается в код как есть
 
 void main()
 {
@@ -10,11 +10,11 @@ void main()
     ptr1 = mas;
     ptr2 = &mas[2];
 
-    PR(ptr1);
+    PR(ptr1); // Вывод адреса переменной по указателю, значения переменной по указателю и адрес переменной указателя
     ptr1++;
     PR(ptr1);
     PR(ptr2);
     ++ptr2;
 
-    printf("ptr2-ptr1=%u\n", ptr2 - ptr1);
+    printf("ptr2-ptr1=%u\n", ptr2 - ptr1); // Вывод разности адресов между указателями
 }
